@@ -5,7 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 
 const Header = ({ siteTitle }) => (
-  <header className=" ml-24 ">
+  <header className="ml-24 ">
     
     <div className="flex justify-between items-center ">
     <Link to="/">
