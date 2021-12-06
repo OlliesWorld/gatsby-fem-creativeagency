@@ -1,69 +1,75 @@
 import React from 'react'
-import AliceCarousel from 'react-alice-carousel';
-import "react-alice-carousel/lib/alice-carousel.css";
-import { StaticImage } from "gatsby-plugin-image"
+import { SliderData } from './SliderData';
+import {  StaticImage } from "gatsby-plugin-image"
 
-export default function Slider() {
+
+const ImageSlider = ({ sliders }) => {
+     // Create a curr state indicating what's the current slide's index
+  const [curr, setCurr] = React.useState(0);
+  const { length } = sliders;
+
+  const goToNext = () => {
+    // Check if we've reached the final slide in the array
+    // If so, go back to 0, else curr + 1
+    setCurr(curr === length - 1 ? 0 : curr + 1);
+  }
+  const goBack = () => {
+      setCurr(curr === 0 ? length - 1 : curr - 1)
+  }
+
+  // useEffect will run at every re-render
+  React.useEffect(() => {
+    // At every render, set a new timeout to go to the next slide
+    setTimeout(goToNext, 40000);
+    // And, when unmounting <Slider />, clear the timeout
+    // See the reactjs.org docs on hooks for more info
+    return function () {
+      clearTimeout(goToNext);
+    }
+  })
+
+  if (!Array.isArray(sliders) || length <= 0) {
+    return null;
+  }
     return (
-        <AliceCarousel autoPlay autoHeight infinite autoPlayInterval="8000">
-        
-        <div className="flex w-full ">
-            <div className="flex bg-black text-white w-5/6 h-2/3 z-20 pl-40">
-              <h2 className=" w-72 text-6xl font-extrabold ml-10 py-20">
-                  Brand naming & guidelines
-                </h2>
-                  <div className="lg:absolute left-32  pl-72 ml-36">
-                            <StaticImage src="../images/assets/desktop/bg-pattern-wavy-white.svg" alt="A dinosaur" className="w-18 mt-24 ml-20" height={60}/>
+     
+        <div className="h-full w-full ">
+            {SliderData.map((s, i) => {
+                return (
+                <div className={i === curr ? 'slide active' : 'slide'} key={i} >
+              {i === curr && (
+                    <div className="flex w-full h-full">
+                    <div className="bg-black text-white w-5/6  ">
+                        <h2 className=" w-2/3 text-4xl font-extrabold text-left mx-auto pt-36 lg:text-6xl">
+                            {s.content}
+                        </h2>   
+                        <div className="flex ml-36">
+                            <StaticImage src="../images/assets/desktop/icon-arrow-previous.svg" alt="previous"  placeholder="blurred" layout="fixed" onClick={goToNext} width={40} className="mr-4 cursor-pointer"/>
+                            <StaticImage src="../images/assets/desktop/icon-arrow-next.svg" alt="next"  placeholder="blurred" layout="fixed"  width={40} onClick={goBack} className="cursor-pointer"/>
+                        </div>
                     </div>
-            </div>
-            <div className="w-full h-full z-10">
-                <StaticImage src="../images/assets/desktop/image-slide-1.jpg" alt="slide 1"  height={700} className="sm:hidden z-0" placeholder="blurred" layout="fixed" />
-            <div className="lg:absolute right-2">
-                <p className="font-extrabold text-white">Lean Product Roadmap</p>
-                <p className="text-red">2019 Project</p>
-            </div>
-            </div>
-            </div>
-{/* slide2 */}
-            <div className="flex w-full ">
-            <div className="flex bg-black text-white w-5/6 h-2/3 z-20 pl-40">
-              <h2 className=" w-72 text-6xl font-extrabold ml-10 py-20">
-                Brand identity & merchandise
-                </h2>
-                  <div className="lg:absolute left-32  pl-72 ml-36">
-                            <StaticImage src="../images/assets/desktop/bg-pattern-wavy-white.svg" alt="A dinosaur" className="w-18 mt-24 ml-20" height={60}/>
+                      
+                    <div className=" z-10">
+                    
+                        <img className="w-full h-full" src={s.imageDesk} alt={` ${s.content}`} />
+          
+                        
+                       {/* linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, #000000 100%); */}
+                            <div className="bg-gradient-to-b from-gray-200 via-gray-400 to-gray-600 w-1/2 ml-60 pl-36 -mt-24">
+                                <p className="text-md font-extrabold text-white m-0">{s.caption}</p>
+                                <p className="text-red">{s.date}</p>
+                            </div>
                     </div>
+                    </div>
+               )}
+                </div>
+            )
+              })}
             </div>
-            <div className="w-full h-full z-10">
-                <StaticImage src="../images/assets/desktop/image-slide-2.jpg" alt="slide 1"  height={700} className="sm:hidden  z-0" placeholder="blurred" layout="fixed" />
-            <div className="lg:absolute right-2">
-                <p className="font-extrabold text-white">New Majestic Hotel</p>
-                <p className="text-red">2018 Project</p>
-            </div>
-            </div>
-            
-        </div>
-{/* slide 3 */}
 
-        <div className="flex w-full ">
-            <div className="flex bg-black text-white w-5/6 h-2/3 z-20 pl-40">
-              <h2 className=" w-72 text-6xl font-extrabold ml-10 py-20">
-                Brand identity & web design
-                </h2>
-               
-                  <div className="lg:absolute left-32  pl-72 ml-36">
-                            <StaticImage src="../images/assets/desktop/bg-pattern-wavy-white.svg" alt="A dinosaur" className="w-18 mt-24 ml-20" height={60}/>
-                    </div>
-            </div>
-            <div className="w-full h-full z-10">
-                <StaticImage src="../images/assets/desktop/image-slide-3.jpg" alt="slide 1"  height={700} className="sm:hidden  z-0" placeholder="blurred" layout="fixed" />
-            <div className="lg:absolute right-2">
-                <p className="font-extrabold text-white">Crypto Dashboard</p>
-                <p className="text-red">2016 Project</p>
-            </div>
-            </div>
-            
-        </div>
-        </AliceCarousel>
+        
+        
     )
 }
+
+export default ImageSlider

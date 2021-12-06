@@ -6,6 +6,7 @@ import Seo from "../components/seo"
 import Hero from "../components/hero"
 import Strategy from "../components/strategy"
 import Slider from "../components/slider"
+import { SliderData } from "../components/SliderData"
 
 
 const IndexPage = () => (
@@ -13,7 +14,7 @@ const IndexPage = () => (
     <Seo title="Home" />
     <Hero />
     <Strategy />
-    <Slider />
+    <Slider sliders={SliderData}/>
   </Layout>
 )
 
