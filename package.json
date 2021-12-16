@@ -18,15 +18,14 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0",
-    "tailwindcss": "^2.2.19"
+    "react-helmet": "^6.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
-    "gatsby-plugin-postcss": "^5.3.0",
-    "postcss": "^8.4.4",
-    "prettier": "^2.4.1"
-    
+    "gatsby-plugin-postcss": "^5.4.0",
+    "postcss": "^8.4.5",
+    "prettier": "^2.4.1",
+    "tailwindcss": "^3.0.5"
   },
   "keywords": [
     "gatsby"
