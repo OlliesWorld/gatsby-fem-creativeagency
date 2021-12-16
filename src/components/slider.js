@@ -34,14 +34,14 @@ const ImageSlider = ({ sliders }) => {
     return (
      
         <div className="h-full w-full ">
-            {SliderData.map((s, i) => {
+            {SliderData.map((slide, i) => {
                 return (
                 <div className={i === curr ? 'slide active' : 'slide'} key={i} >
               {i === curr && (
                     <div className="flex w-full h-full">
                     <div className="bg-black text-white w-5/6  ">
                         <h2 className=" w-2/3 text-4xl font-extrabold text-left mx-auto pt-36 lg:text-6xl">
-                            {s.content}
+                            {slide.content}
                         </h2>   
                         <div className="flex ml-36">
                             <StaticImage src="../images/assets/desktop/icon-arrow-previous.svg" alt="previous"  placeholder="blurred" layout="fixed" onClick={goToNext} width={40} className="mr-4 cursor-pointer"/>
@@ -51,13 +51,13 @@ const ImageSlider = ({ sliders }) => {
                       
                     <div className=" z-10">
                     
-                        <img className="w-full h-full" src={s.imageDesk} alt={` ${s.content}`} />
+                        <img className="w-full h-full" src={slide.imageDesk} alt='slide' />
           
                         
                        {/* linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, #000000 100%); */}
                             <div className="bg-gradient-to-b from-gray-200 via-gray-400 to-gray-600 w-1/2 ml-60 pl-36 -mt-24">
-                                <p className="text-md font-extrabold text-white m-0">{s.caption}</p>
-                                <p className="text-red">{s.date}</p>
+                                <p className="text-md font-extrabold text-white m-0">{slide.caption}</p>
+                                <p className="text-red">{slide.date}</p>
                             </div>
                     </div>
                     </div>

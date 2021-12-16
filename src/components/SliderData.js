@@ -1,6 +1,6 @@
 export const SliderData = [
     {
-        imageDesk:'assets/image-slide-1.jpg',
+        imageDesk:'assets/desktop/image-slide-1.jpg',
         imageTablet:'../images/assets/tablet/image-slide-1.jpg',
         imageMobile:'../images/assets/mobile/image-slide-1.jpg',
         caption: 'Lean Product Roadmap',
