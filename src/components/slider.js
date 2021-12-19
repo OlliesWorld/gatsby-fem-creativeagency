@@ -1,9 +1,11 @@
 import React from 'react'
 import { SliderData } from './SliderData';
-import {  StaticImage } from "gatsby-plugin-image"
+
+import { StaticImage } from "gatsby-plugin-image"
 
 
 const ImageSlider = ({ sliders }) => {
+  // console.log(sliders)
      // Create a curr state indicating what's the current slide's index
   const [curr, setCurr] = React.useState(0);
   const { length } = sliders;
@@ -35,6 +37,7 @@ const ImageSlider = ({ sliders }) => {
      
         <div className="h-full w-full ">
             {SliderData.map((slide, i) => {
+              
                 return (
                 <div className={i === curr ? 'slide active' : 'slide'} key={i} >
               {i === curr && (
@@ -50,16 +53,16 @@ const ImageSlider = ({ sliders }) => {
                     </div>
                       
                     <div className="sm:hidden md:block lg:absolute left-32 pt-36 pl-72 ml-72 ">
-                      <StaticImage src="../images/assets/desktop/bg-pattern-wave-red.svg" alt="A dinosaur" className="sm:hidden lg:block inline-flex w-18  ml-60 mt-40 " height={60}/>
+                      <StaticImage src="../images/assets/desktop/bg-pattern-wave-red.svg" alt="A dinosaur" className="sm:hidden lg:block inline-flex w-18  ml-24 mt-18 z-40" height={60}/>
                     </div>
                     
                     <div className=" z-10">
                     {/* width: 895px; height: 728px; */}
-                        <img className="w-full h-full z-10" src={slide.imageDesk} alt='slide' />
-        
-                            <div className="bg-gradient-to-b from-gray-200 via-gray-400 to-gray-600 w-1/2 ml-60 pl-36 -mt-24">
-                                <p className="text-md font-extrabold text-white m-0">{slide.caption}</p>
-                                <p className="text-red">{slide.date}</p>
+                        <img className="w-full h-full z-10" src={slide.imageDesk} alt={slide.caption} width={800}/>
+                        
+                            <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white w-1/2 ml-72 pl-64 -mt-24">
+                                <p className="text-md font-extrabold  m-0">{slide.caption}</p>
+                                <p className="">{slide.date}</p>
                             </div>
                     </div>
                     </div>
